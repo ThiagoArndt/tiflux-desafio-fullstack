@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type ClientsAddress {
+  cep    String
+  number Int
+  street String
+}
+
+type ClientsContacts {
+  id    String @map("_id") @db.ObjectId
+  email String
+  phone String
+}
+
+model clients {
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  address  ClientsAddress
+  contacts ClientsContacts[]
+  document String
+  name     String
+}
+
+//Gostaria de mencionar que optei por utilizar um Array de objetos ao invés de relacionar
+//por conta de boas práticas do MongoDB e porque esta aplicação é simples
+
+//Pensando em escalabilidade, utilizar um relacionamento entre as "collections"
+// é mais vantajoso no meu ponto de vista, mas, novamente, vai depender do contexto e requisitos.
