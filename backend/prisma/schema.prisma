@@ -14,7 +14,6 @@ type ClientsAddress {
 }
 
 type ClientsContacts {
-  id    String @map("_id") @db.ObjectId
   email String
   phone String
 }

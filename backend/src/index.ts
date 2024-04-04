@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors"
+import middie from "@fastify/middie";
 import dotenv from "dotenv"
 import { routes } from "./routes";
 
@@ -13,7 +14,8 @@ const start = async () => {
   
   await app.register(cors)
   await app.register(routes);
-
+  await app.register(middie);
+  
   try{
     await app.listen({port: PORT})
   }
