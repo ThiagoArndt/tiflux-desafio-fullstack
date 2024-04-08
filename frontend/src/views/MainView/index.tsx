@@ -1,4 +1,4 @@
-import { SideBar } from "../components/SideBar/index";
+import { SideBar } from "../../components/SideBar/index";
 import logo from "../assets/logo.png";
 import { FaUserGroup, FaTrash } from "react-icons/fa6";
 import { IoPowerOutline } from "react-icons/io5";
@@ -6,15 +6,16 @@ import { Button, Space } from "antd";
 import { BiPlus } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { Table } from "../components/Table";
+import { Table } from "../../components/Table";
 import Modal from "antd/es/modal";
-import ModalView from "./ModalView";
-import { ClientInterface } from "../types/clientTypes";
+
+import { ClientInterface } from "../../types/clientTypes";
 import toast from "react-hot-toast";
-import maskCpfCnpj from "../utils/maskCpfCnpj";
+import maskCpfCnpj from "../../utils/maskCpfCnpj";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import { handleDeleteClient, handleGetClients } from "../api/clients";
+import { RootState } from "../../store";
+import { handleDeleteClient, handleGetClients } from "../../api/clients";
+import ModalViewIndex from "../ModalView";
 
 function MainView() {
   const clients = useSelector((state: RootState) => state.clients);
@@ -26,7 +27,7 @@ function MainView() {
 
   //Get List of Clients
   useEffect(() => {
-    handleGetClients(dispatch).catch((_) => {
+    handleGetClients(dispatch).catch(() => {
       setHasError(true);
     });
   }, [dispatch]);
@@ -159,7 +160,7 @@ function MainView() {
         onCancel={handleModalCancel}
         footer={<></>}
       >
-        <ModalView {...selectedClient!} setIsModalOpen={setIsModalOpen} />
+        <ModalViewIndex clientProps={selectedClient!} setIsModalOpen={setIsModalOpen} />
       </Modal>
     </div>
   );
