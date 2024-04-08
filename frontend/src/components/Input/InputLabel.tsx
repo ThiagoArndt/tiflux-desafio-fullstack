@@ -1,4 +1,5 @@
-interface InputLabelProps {
+interface InputLabelProps
+  extends React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> {
   label: string;
   isRequired?: boolean;
 }
@@ -7,10 +8,7 @@ function InputLabel(props: Readonly<InputLabelProps>) {
   const { label, isRequired } = props;
   return (
     <div className="flex gap-2 items-center justify-center">
-      <label
-        htmlFor="first_name"
-        className="font-vietman font-medium block text-sm text-black-color"
-      >
+      <label {...props} className="font-vietman font-medium block text-sm text-black-color">
         {label}
       </label>
       {isRequired ? (

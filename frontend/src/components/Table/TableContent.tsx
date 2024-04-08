@@ -4,7 +4,13 @@ interface TableContentProps extends TableProps {}
 
 function TableContent(props: Readonly<TableContentProps>) {
   return (
-    <Table className="px-8 font-poppins font-normal" size="large" pagination={false} {...props} />
+    <Table
+      className="px-8 font-poppins font-normal !overflow-y-clip"
+      scroll={{ y: 300 }}
+      size="large"
+      pagination={false}
+      {...props}
+    />
   );
 }
 

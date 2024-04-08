@@ -13,7 +13,7 @@ function App() {
         },
       }}
     >
-      <MainView />;
+      <MainView />
     </ConfigProvider>
   );
 }

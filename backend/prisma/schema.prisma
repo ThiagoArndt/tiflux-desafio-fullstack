@@ -8,22 +8,22 @@ datasource db {
 }
 
 type ClientsAddress {
-  cep    String
-  number Int
-  street String
+  cep    String? @default("")
+  number String? @default("")
+  street String? @default("")
 }
 
 type ClientsContacts {
-  email String
-  phone String
+  email String? @default("")
+  phone String? @default("")
 }
 
 model clients {
   id       String            @id @default(auto()) @map("_id") @db.ObjectId
-  address  ClientsAddress
+  address  ClientsAddress?
   contacts ClientsContacts[]
-  document String
-  name     String
+  document String @default("")
+  name     String? @default("")
 }
 
 //Gostaria de mencionar que optei por utilizar um Array de objetos ao invés de relacionar

@@ -7,8 +7,23 @@ class UpdateClientController{
         try{
         //Call service to persist & update the data
         const updateClientService = new UpdateClientService()
-        const updatedclients = await updateClientService.execute(request.body);
         
+        const filteredContacts = request.body.contacts.filter(contact => {
+            // Check if both email and phone are empty strings
+            const isEmailEmpty = contact.email === '';
+            const isPhoneEmpty = contact.phone === '';
+            
+            // Exclude the contact if both email and phone are empty strings,
+            // unless email is not empty
+            return !(isEmailEmpty && isPhoneEmpty) || !isEmailEmpty;
+        });
+         //New data
+         const data = {...request.body, contacts: filteredContacts}
+
+
+         //Execute service
+         const updatedclients = await updateClientService.execute(data);
+
         response.send(updatedclients)
 
         }catch(e:any){

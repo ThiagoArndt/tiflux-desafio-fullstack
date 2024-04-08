@@ -21,11 +21,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+
     "baseUrl": "./src", 
     
         "paths": {
             "@assets/*": ["assets/*"],
             "@components/*": ["components/*"],
+            "@utils/*": ["utils/*"],
+            "@api/*": ["api/*"],
+            "@types/*": ["types/*"],
         },
   },
   "include": ["src","src/index.d.ts"],
