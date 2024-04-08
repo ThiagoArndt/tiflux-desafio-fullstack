@@ -1,5 +1,5 @@
 import { SideBar } from "../../components/SideBar/index";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { FaUserGroup, FaTrash } from "react-icons/fa6";
 import { IoPowerOutline } from "react-icons/io5";
 import { Button, Space } from "antd";
@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { handleDeleteClient, handleGetClients } from "../../api/clients";
 import ModalViewIndex from "../ModalView";
+import { FiSearch } from "react-icons/fi";
+import { FaRegBell } from "react-icons/fa";
 
 function MainView() {
   const clients = useSelector((state: RootState) => state.clients);
@@ -127,28 +129,43 @@ function MainView() {
           </Button>
         </SideBar.Content>
       </SideBar.Root>
-      <div className="grow ml-[156px] mt-[172px] mr-[280px] h-[450px] font-poppins rounded-sm bg-white-all-color">
-        {!hasError ? (
-          <Table.Root>
-            <Table.Header>
-              <p className="my-auto font-normal">Clientes</p>
-              <Button
-                onClick={openModalNewClient}
-                icon={<BiPlus />}
-                className="text-white-color font-normal font-vietnam my-auto px-6 bg-aqua-color rounded-sm text-base hover:!text-white outline-none  border-none  inline-flex items-center text-left hover:!bg-aqua-color hover:!bg-opacity-95"
-              >
-                Cliente
-              </Button>
-            </Table.Header>
-            <Table.Content dataSource={clients} columns={columns} />
-          </Table.Root>
-        ) : (
-          <div className="flex h-full">
-            <p className="m-auto font-vietnam text-2xl items-center justify-center">
-              Infelizmente, não conseguimos resgatar sua lista de clientes.
-            </p>
+      <div className="flex flex-col ml-[156px] mt-[56px] mr-[280px]">
+        <div className="mb-[70px] pl-[24px] pr-[8px] w-full flex flex-row justify-between">
+          <h1 className="font-poppins font-medium text-3xl">Olá, User</h1>
+          <div className="flex flex-row gap-5 items-center">
+            <FiSearch color="text-black-color" size={24} />
+            <FaRegBell color="text-black-color" size={24} />
+            <div className="flex flex-row items-center gap-1">
+              <span className="font-vietnam block h-[30px] w-[30px] leading-[31px] bg-blue-color text-white-all-color text-center text-lg rounded-[30px]">
+                U
+              </span>
+              <div className="font-poppins text-black-color text-sm font-medium">User</div>
+            </div>
           </div>
-        )}
+        </div>
+        <div className=" h-[450px] font-poppins rounded-sm bg-white-all-color">
+          {!hasError ? (
+            <Table.Root>
+              <Table.Header>
+                <p className="my-auto font-normal">Clientes</p>
+                <Button
+                  onClick={openModalNewClient}
+                  icon={<BiPlus />}
+                  className="text-white-color font-normal font-vietnam my-auto px-6 bg-aqua-color rounded-sm text-base hover:!text-white outline-none  border-none  inline-flex items-center text-left hover:!bg-aqua-color hover:!bg-opacity-95"
+                >
+                  Cliente
+                </Button>
+              </Table.Header>
+              <Table.Content dataSource={clients} columns={columns} />
+            </Table.Root>
+          ) : (
+            <div className="flex h-full">
+              <p className="m-auto font-vietnam text-2xl items-center justify-center">
+                Infelizmente, não conseguimos resgatar sua lista de clientes.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
       <Modal
         width={570}

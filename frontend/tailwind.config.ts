@@ -22,6 +22,7 @@ export default {
         'white-all-color': "#FFFFFF",
         'dark-icon-color': "#4D4D4D",
         'black-color': "#262626",
+        'blue-color': "#6683FF",
       }
     }
   },
