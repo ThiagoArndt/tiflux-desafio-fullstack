@@ -1,16 +1,27 @@
-// src/index.js
-import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
+import Fastify from "fastify";
+import cors from "@fastify/cors"
+import middie from "@fastify/middie";
+import dotenv from "dotenv"
+import { routes } from "./routes";
 
 dotenv.config();
 
-const app: Express = express();
-const port = process.env.PORT ?? 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+const app = Fastify({logger: true})
+const PORT = Number(process.env.PORT ?? 3000)
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+const start = async () => {
+  
+  await app.register(cors)
+  await app.register(routes);
+  await app.register(middie);
+  
+  try{
+    await app.listen({port: PORT})
+  }
+  catch(e){
+    process.exit(1)
+  }
+}
+
+start()
