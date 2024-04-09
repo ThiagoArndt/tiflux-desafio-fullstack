@@ -17,7 +17,7 @@ const clientsSlice = createSlice({
         state.push(...action.payload)
       },
     clientPushOne(state:ClientInterface[], action:ActionsInterface) {
-      console.log(action.payload)
+   
        state.push(action.payload);
       },
  

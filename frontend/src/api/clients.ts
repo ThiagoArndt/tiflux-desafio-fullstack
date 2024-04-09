@@ -3,7 +3,7 @@ import request from ".";
 import { clientDeleted, clientPush, clientPushOne, clientUpdated } from "../store/slices/clientSlice";
 
 import toast from "react-hot-toast";
-import { AppDispatch } from "store";
+import { AppDispatch } from "../store";
 import { ClientInterface } from "../types/clientTypes";
 
 //Delete
@@ -27,7 +27,6 @@ export const handleAddClient = async(data:ClientInterface, dispatch:AppDispatch)
   await request("POST", "createClient", data)
         .then((response: AxiosResponse) => {
      
-          console.log(response);
           if (response.status != 200) throw new Error(response.statusText);
           dispatch(clientPushOne(response.data));
           toast.success("Cliente adicionado com sucesso!");
@@ -36,7 +35,6 @@ export const handleAddClient = async(data:ClientInterface, dispatch:AppDispatch)
         .catch((error: AxiosError<any>) => {
           toast.error(error.response?.data?.message ?? "Não foi possível adicionar o cliente");
 
-          console.log(error);
           throw error;
         });
 }
@@ -53,7 +51,7 @@ export const handleUpdateClient = async(data:ClientInterface, dispatch:AppDispat
         .catch((error: AxiosError<any>) => {
           toast.error(error.response?.data?.message ?? "Não foi possível atualizar o cliente");
 
-          console.log(error);
+    
           throw error;
         });
 }

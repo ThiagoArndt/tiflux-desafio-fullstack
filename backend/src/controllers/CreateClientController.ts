@@ -1,6 +1,6 @@
 import {FastifyRequest, FastifyReply} from "fastify";
 import { CreateClientService} from "../services/CreateClientService"
-import { clients as ClientModel, ClientsContacts } from "@prisma/client";
+import { clients as ClientModel } from "@prisma/client";
 
 class CreateClientController{
     async handle(request:FastifyRequest<{ Body: ClientModel }>, response: FastifyReply){
