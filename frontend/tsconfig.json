@@ -22,16 +22,27 @@
     "noFallthroughCasesInSwitch": true,
 
 
-    "baseUrl": "./src", 
+    "baseUrl": ".", 
     
         "paths": {
-            "@assets/*": ["assets/*"],
-            "@components/*": ["components/*"],
-            "@utils/*": ["utils/*"],
-            "@api/*": ["api/*"],
-            "@types/*": ["types/*"],
+          "@/*": ["./src/*", "./dist/*", ""],
+          "api/*": ["./src/api/*"],
+          "assets/*": ["./src/assets/*"],
+          "components/*": ["./src/components/*"],
+          "hooks/*": ["./src/hooks/*"],
+          "services/*": ["./src/services/*"],
+          "store/*": ["./src/store/*"],
+          "types/*": ["./src/types/*"],
+          "utils/*": ["./src/utils/*"],
+          "views/*": ["./src/views/*"],
         },
   },
-  "include": ["src","src/index.d.ts"],
+    "include": [
+    "src/**/*", "src/index.d.ts"
+],
+    "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

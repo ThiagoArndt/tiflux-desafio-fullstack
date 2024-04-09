@@ -1,14 +1,17 @@
 import { SideBar } from "../../components/SideBar/index";
 import logo from "../../assets/logo.png";
-import { FaUserGroup, FaTrash } from "react-icons/fa6";
-import { IoPowerOutline } from "react-icons/io5";
+import { ReactComponent as EditIcon } from "../../assets/edit_icon.svg";
+import { ReactComponent as BellIcon } from "../../assets/bell_icon.svg";
+import { ReactComponent as SearchIcon } from "../../assets/search_icon.svg";
+import { ReactComponent as TrashIcon } from "../../assets/trash_icon.svg";
+import { ReactComponent as UserGroupIcon } from "../../assets/user_group_icon.svg";
+import { ReactComponent as PowerIcon } from "../../assets/power_icon.svg";
+
 import { Button, Space } from "antd";
 import { BiPlus } from "react-icons/bi";
-import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Table } from "../../components/Table";
 import Modal from "antd/es/modal";
-
 import { ClientInterface } from "../../types/clientTypes";
 import toast from "react-hot-toast";
 import maskCpfCnpj from "../../utils/maskCpfCnpj";
@@ -16,8 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { handleDeleteClient, handleGetClients } from "../../api/clients";
 import ModalViewIndex from "../ModalView";
-import { FiSearch } from "react-icons/fi";
-import { FaRegBell } from "react-icons/fa";
 
 function MainView() {
   const clients = useSelector((state: RootState) => state.clients);
@@ -93,11 +94,11 @@ function MainView() {
       key: "action",
       render: (_: unknown, record: ClientInterface) => (
         <Space size="middle">
-          <FaEdit
+          <EditIcon
             onClick={() => openModalUpdateClient(record)}
             className="text-dark-icon-color cursor-pointer"
           />
-          <FaTrash
+          <TrashIcon
             onClick={() => handleDeleteClient(record.id!, dispatch)}
             className="text-dark-icon-color cursor-pointer"
           />
@@ -112,7 +113,7 @@ function MainView() {
         <SideBar.Image src={logo} />
         <SideBar.Content>
           <Button
-            icon={<FaUserGroup />}
+            icon={<UserGroupIcon />}
             className="text-white
      bg-transparent
        hover:!text-white font-poppins outline-none  border-none text-lg font-medium inline-flex items-center text-left hover:!bg-white hover:!bg-opacity-5"
@@ -120,7 +121,7 @@ function MainView() {
             Clientes
           </Button>
           <Button
-            icon={<IoPowerOutline />}
+            icon={<PowerIcon />}
             className="text-red-color
      bg-transparent
        hover:!text-white font-poppins outline-none  border-none text-lg font-medium inline-flex items-center text-left hover:!bg-white hover:!bg-opacity-5"
@@ -133,8 +134,8 @@ function MainView() {
         <div className="mb-[70px] pl-[24px] pr-[8px] w-full flex flex-row justify-between">
           <h1 className="font-poppins font-medium text-3xl">Olá, User</h1>
           <div className="flex flex-row gap-5 items-center">
-            <FiSearch color="text-black-color" size={24} />
-            <FaRegBell color="text-black-color" size={24} />
+            <SearchIcon color="text-black-color" />
+            <BellIcon color="text-black-color" />
             <div className="flex flex-row items-center gap-1">
               <span className="font-vietnam block h-[30px] w-[30px] leading-[31px] bg-blue-color text-white-all-color text-center text-lg rounded-[30px]">
                 U
